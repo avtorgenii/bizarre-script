@@ -1,0 +1,32 @@
+DOMAIN_EXPANSION
+
+KO_RE_WA_REQUIEM func () {
+    DATTEBAYO "1000-7?";
+    bool a DESU 1;
+    DATTEBAYO 2;
+    ARRIVEDERCI 5;
+}
+
+int x DESU func ();
+
+DATTEBAYO x;
+
+string input DESU ZAWARUDO "BAKA!";
+DATTEBAYO input;
+
+
+KO_RE_WA_REQUIEM paramful (x, y, z) {
+    DATTEBAYO x;
+    DATTEBAYO y;
+    DATTEBAYO z;
+}
+
+paramful (1, 2, 3);
+
+ORAORAORA (int i DESU 0;i < 5;i DESU i + 1) {
+    DATTEBAYO i;
+}
+
+
+
+OMAE_WA_MOU_SHINDEIRU
