@@ -1,4 +1,4 @@
-// Generated from /home/avtor/dev/bizarre-script/src/grammar/ExprParser.g4 by ANTLR 4.13.2
+// Generated from C:/Users/ptakw/Desktop/Kurs/bizarre-script/src/grammar/ExprParser.g4 by ANTLR 4.13.2
 package grammar;
 
 import org.antlr.v4.runtime.ParserRuleContext;
@@ -113,6 +113,18 @@ public class ExprParserBaseListener implements ExprParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterIncrementStat(ExprParser.IncrementStatContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitIncrementStat(ExprParser.IncrementStatContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterBlockSingle(ExprParser.BlockSingleContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -173,6 +185,18 @@ public class ExprParserBaseListener implements ExprParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterListAccess(ExprParser.ListAccessContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitListAccess(ExprParser.ListAccessContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterReadCall(ExprParser.ReadCallContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -180,6 +204,18 @@ public class ExprParserBaseListener implements ExprParserListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitReadCall(ExprParser.ReadCallContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterListLit(ExprParser.ListLitContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitListLit(ExprParser.ListLitContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

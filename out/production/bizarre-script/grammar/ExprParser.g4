@@ -13,6 +13,8 @@ stat: type ID ASSIGN expr SEMI                                                  
     | IF_kw '(' cond=expr ')' then=block (ELSE_kw elseBlock=block)?             #IfStat
     | RETURN_kw expr? SEMI                                                      #ReturnStat
     | FOR_kw '(' init=stat cond=expr SEMI step=expr ')' body=block              #ForStat
+    | FOR_kw '(' init=stat cond=expr SEMI (stepStat=stat | stepExpr=expr) ')' body=block   #ForStat
+    | ID op=(INCR|DECR) SEMI                                                    #IncrementStat
     ;
 
 block: stat             #BlockSingle
@@ -32,5 +34,7 @@ expr: ID '(' expr? (',' expr)* ')'                      #FunCall
     | STRING                                            #StringLit
     | BOOL                                              #BoolLit
     | ID                                                #Id
+    | LBRACK expr? (',' expr)* RBRACK                   #ListLit
+    | ID LBRACK expr RBRACK                             #ListAccess
     | <assoc=right> ID ASSIGN expr                      #Assign           // Магия здесь: y = 5 теперь валидный expr
     ;

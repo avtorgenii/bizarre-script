@@ -1,5 +1,5 @@
-// Generated from C:/Users/ptakw/Desktop/Kurs/bizarre-script/src/grammar/ExprLexer.g4 by ANTLR 4.13.2
-package grammar;
+// Generated from C:/Users/ptakw/Desktop/Kurs/bizarre-script/out/production/bizarre-script/grammar/ExprLexer.g4 by ANTLR 4.13.2
+package bizarre-script.grammar;
 import org.antlr.v4.runtime.Lexer;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.Token;

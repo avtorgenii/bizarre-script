@@ -3,10 +3,7 @@ package interpreter;
 import grammar.ExprLexer;
 import grammar.ExprParser;
 import grammar.ExprParserBaseVisitor;
-import interpreter.types.FloatVal;
-import interpreter.types.IntVal;
-import interpreter.types.StringVal;
-import interpreter.types.Value;
+import interpreter.types.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -117,10 +114,13 @@ public class Visitor extends ExprParserBaseVisitor<Value> {
         memory.enterScope();
         try {
             visit(ctx.init);
-
-            while (isTrue(visit(ctx.cond))) {
+            while (visit(ctx.cond).isTrue()) {
                 visit(ctx.body);
-                visit(ctx.step);
+                if (ctx.stepStat != null) {
+                    visit(ctx.stepStat);
+                } else if (ctx.stepExpr != null) {
+                    visit(ctx.stepExpr);
+                }
             }
         } finally {
             memory.leaveScope();
@@ -128,6 +128,20 @@ public class Visitor extends ExprParserBaseVisitor<Value> {
         return null;
     }
 
+    // INCREMENT / DECREMENT
+    @Override
+    public Value visitIncrementStat(ExprParser.IncrementStatContext ctx) {
+        String id = ctx.ID().getText();
+        Value val = memory.getSymbol(id);
+
+        if (val instanceof IntVal(Integer val1)) {
+            int newValue = ctx.op.getType() == ExprLexer.INCR ? val1 + 1 : val1 - 1;
+            memory.setSymbol(id, new IntVal(newValue));
+        } else {
+            throw new RuntimeException("Increment / decrement error");
+        }
+        return null;
+    }
 
     // ##### EXPR #####
     // Изменение существующей переменной (y = ...) внутри expr
@@ -145,6 +159,36 @@ public class Visitor extends ExprParserBaseVisitor<Value> {
         String name = ctx.ID().getText();
 
         return memory.getSymbol(name);
+    }
+
+    @Override
+    public Value visitListLit(ExprParser.ListLitContext ctx) {
+        List<Value> elements = new ArrayList<>();
+        for (ExprParser.ExprContext exprCtx : ctx.expr()) {
+            elements.add(visit(exprCtx));
+        }
+        return new ListVal(elements);
+    }
+
+    @Override
+    public Value visitListAccess(ExprParser.ListAccessContext ctx) {
+        String name = ctx.ID().getText();
+        Value val = memory.getSymbol(name);
+
+        if (!(val instanceof ListVal(List<Value> elements))) {
+            throw new RuntimeException("Błąd: '" + name + "' nie jest listą!");
+        }
+
+        Value indexVal = visit(ctx.expr());
+        if (!(indexVal instanceof IntVal(Integer val1))) {
+            throw new RuntimeException("Błąd: Indeks listy musi być liczbą całkowitą!");
+        }
+
+        try {
+            return elements.get(val1);
+        } catch (IndexOutOfBoundsException e) {
+            throw new RuntimeException("Błąd: Indeks " + val1 + " poza zakresem listy '" + name + "'!");
+        }
     }
 
     @Override

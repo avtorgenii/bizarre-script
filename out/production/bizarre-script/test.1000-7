@@ -23,10 +23,23 @@ KO_RE_WA_REQUIEM paramful (x, y, z) {
 
 paramful (1, 2, 3);
 
-ORAORAORA (int i DESU 0;i < 5;i DESU i + 1) {
+ORAORAORA (int i DESU 0; i < 5; i DESU i + 1;) {
     DATTEBAYO i;
 }
 
+ORAORAORA (int j DESU 0; j < 3; j PLUS_ULTRA;) {
+    DATTEBAYO "test ++: " + j;
+}
 
+ORAORAORA (int k DESU 5; k > 2; k MUDA;) {
+    DATTEBAYO "test --: " + k;
+}
+
+int lista DESU ["11", "22", "33"];
+
+DATTEBAYO lista;
+
+int test DESU lista[1];
+DATTEBAYO "Wybrano: " + test;
 
 OMAE_WA_MOU_SHINDEIRU

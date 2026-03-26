@@ -46,7 +46,8 @@ LPAREN : '(' ;
 RPAREN : ')' ;
 LCURLY : '{' ;
 RCURLY : '}' ;
-
+LBRACK : '[';
+RBRACK : ']';
 
 
 // Literals
