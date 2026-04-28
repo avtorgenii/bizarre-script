@@ -1,4 +1,4 @@
-// Generated from C:/Users/ptakw/Desktop/Kurs/bizarre-script/src/grammar/ExprParser.g4 by ANTLR 4.13.2
+// Generated from C:/Users/ashes/dev/bizarre-script/src/grammar/ExprParser.g4 by ANTLR 4.13.2
 package grammar;
 
 import org.antlr.v4.runtime.ParserRuleContext;
@@ -113,18 +113,6 @@ public class ExprParserBaseListener implements ExprParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterIncrementStat(ExprParser.IncrementStatContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitIncrementStat(ExprParser.IncrementStatContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterBlockSingle(ExprParser.BlockSingleContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -180,6 +168,18 @@ public class ExprParserBaseListener implements ExprParserListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitFunCall(ExprParser.FunCallContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterIncrement(ExprParser.IncrementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitIncrement(ExprParser.IncrementContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

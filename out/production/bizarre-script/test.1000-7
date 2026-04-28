@@ -35,7 +35,7 @@ ORAORAORA (int k DESU 5; k > 2; k MUDA;) {
     DATTEBAYO "test --: " + k;
 }
 
-int lista DESU ["11", "22", "33"];
+list lista DESU [11, "22", "33"];
 
 DATTEBAYO lista;
 

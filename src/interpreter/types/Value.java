@@ -6,6 +6,8 @@ public interface Value {
     Object getVal();
     boolean isTrue();
 
+    Value castTo(Type target);
+
     // Арифметика
     Value add(Value other);
     Value sub(Value other);

@@ -6,6 +6,16 @@ public record NullVal() implements Value {
     @Override public boolean isTrue() { return false; } // null - это всегда ложь
 
     @Override
+    public Value castTo(Type target) {
+        return switch (target) {
+            case NULL   -> this;
+            case STRING -> new StringVal("null");
+            case BOOL   -> new BoolVal(false);
+            default     -> throw new RuntimeException("Cannot cast NULL to " + target);
+        };
+    }
+
+    @Override
     public Value add(Value other) {
         // Если прибавляем к строке — будет "null" + "текст"
         if (other instanceof StringVal) return new StringVal("null" + other.getVal());

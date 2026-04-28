@@ -5,6 +5,17 @@ public record FloatVal(Float val) implements Value {
     @Override public Object getVal() { return val; }
     @Override public boolean isTrue() { return val != 0.0f; }
 
+    @Override
+    public Value castTo(Type target) {
+        return switch (target) {
+            case FLOAT  -> this;
+            case INT    -> new IntVal(val.intValue());
+            case STRING -> new StringVal(String.valueOf(val));
+            case BOOL   -> new BoolVal(val != 0.0f);
+            default     -> throw new RuntimeException("Cannot cast FLOAT to " + target);
+        };
+    }
+
     // Арифметика (всегда возвращает FloatVal)
     @Override public Value add(Value other) {
         if (other instanceof StringVal) return new StringVal(this.val + other.getVal().toString());

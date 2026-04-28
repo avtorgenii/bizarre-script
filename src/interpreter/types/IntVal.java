@@ -6,6 +6,17 @@ public record IntVal(Integer val) implements Value {
     @Override public boolean isTrue() { return val != 0; }
 
     @Override
+    public Value castTo(Type target) {
+        return switch (target) {
+            case INT    -> this;
+            case FLOAT  -> new FloatVal(val.floatValue());
+            case STRING -> new StringVal(String.valueOf(val));
+            case BOOL   -> new BoolVal(val != 0);
+            default     -> throw new RuntimeException("Cannot cast INT to " + target);
+        };
+    }
+
+    @Override
     public Value add(Value other) {
         return switch (other) {
             case IntVal i   -> new IntVal(this.val + i.val());

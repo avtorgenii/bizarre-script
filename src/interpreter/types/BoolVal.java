@@ -5,6 +5,16 @@ public record BoolVal(Boolean val) implements Value {
     @Override public Object getVal() { return val; }
     @Override public boolean isTrue() { return val; }
 
+    @Override
+    public Value castTo(Type target) {
+        return switch (target) {
+            case BOOL   -> this;
+            case INT    -> new IntVal(val ? 1 : 0);
+            case FLOAT  -> new FloatVal(val ? 1.0f : 0.0f);
+            default     -> throw new RuntimeException("Cannot cast BOOL to " + target);
+        };
+    }
+
     @Override public Value eq(Value other) { return new BoolVal(this.val.equals(other.getVal())); }
     @Override public Value ne(Value other) { return new BoolVal(!this.val.equals(other.getVal())); }
 

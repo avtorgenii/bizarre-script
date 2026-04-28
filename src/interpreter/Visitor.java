@@ -39,13 +39,16 @@ public class Visitor extends ExprParserBaseVisitor<Value> {
     // 1. Декларация переменной
     @Override
     public Value visitDeclare(ExprParser.DeclareContext ctx) {
-        String type = ctx.type().getText();
+        Type expectedType = Type.fromString(ctx.type().getText());
         String name = ctx.ID().getText();
-        Value value = visit(ctx.expr());
 
-        memory.declareSymbol(name, value);
+        Value rawValue = visit(ctx.expr());
 
-        return value;
+        Value val = rawValue.castTo(expectedType);
+
+        memory.declareSymbol(name, val);
+
+        return val;
     }
 
     // 2. Просто выражение: x + 5;
@@ -128,21 +131,6 @@ public class Visitor extends ExprParserBaseVisitor<Value> {
         return null;
     }
 
-    // INCREMENT / DECREMENT
-    @Override
-    public Value visitIncrementStat(ExprParser.IncrementStatContext ctx) {
-        String id = ctx.ID().getText();
-        Value val = memory.getSymbol(id);
-
-        if (val instanceof IntVal(Integer val1)) {
-            int newValue = ctx.op.getType() == ExprLexer.INCR ? val1 + 1 : val1 - 1;
-            memory.setSymbol(id, new IntVal(newValue));
-        } else {
-            throw new RuntimeException("Increment / decrement error");
-        }
-        return null;
-    }
-
     // ##### EXPR #####
     // Изменение существующей переменной (y = ...) внутри expr
     @Override
@@ -168,6 +156,21 @@ public class Visitor extends ExprParserBaseVisitor<Value> {
             elements.add(visit(exprCtx));
         }
         return new ListVal(elements);
+    }
+
+    // INCREMENT / DECREMENT
+    @Override
+    public Value visitIncrement(ExprParser.IncrementContext ctx) {
+        String id = ctx.ID().getText();
+        Value val = memory.getSymbol(id);
+
+        if (val instanceof IntVal(Integer val1)) {
+            int newValue = ctx.op.getType() == ExprLexer.INCR ? val1 + 1 : val1 - 1;
+            memory.setSymbol(id, new IntVal(newValue));
+        } else {
+            throw new RuntimeException("Increment / decrement error");
+        }
+        return val; // returning old value as in c++
     }
 
     @Override

@@ -4,7 +4,7 @@ options { tokenVocab=ExprLexer; }
 program   // starting point
     : PROG_START (stat | def)* PROG_END EOF; // program can be composed of multiple statements and function definitions
 
-type : INT_TYPE | FLOAT_TYPE | BOOL_TYPE | STRING_TYPE ;
+type : INT_TYPE | FLOAT_TYPE | BOOL_TYPE | STRING_TYPE | LIST_TYPE;
 
 // в StatContext создастся метод ID() для получения названия переменной если оно есть
 stat: type ID ASSIGN expr SEMI                                                  #Declare         // statement could be variable declaration, ID - variable name, expr - maths or logical expression
@@ -14,7 +14,6 @@ stat: type ID ASSIGN expr SEMI                                                  
     | RETURN_kw expr? SEMI                                                      #ReturnStat
     | FOR_kw '(' init=stat cond=expr SEMI step=expr ')' body=block              #ForStat
     | FOR_kw '(' init=stat cond=expr SEMI (stepStat=stat | stepExpr=expr) ')' body=block   #ForStat
-    | ID op=(INCR|DECR) SEMI                                                    #IncrementStat
     ;
 
 block: stat             #BlockSingle
@@ -29,6 +28,7 @@ expr: ID '(' expr? (',' expr)* ')'                      #FunCall
     | l=expr op=(MUL|DIV) r=expr                        #BinOp            // l, op и r появяться как полня контекста BinOpContext
     | l=expr op=(ADD|SUB) r=expr                        #BinOp
     | l=expr op=(EQUAL|NOTEQUAL|GT|LT|GE|LE) r=expr     #BinOp
+    | ID op=(INCR|DECR)                                 #Increment
     | INT                                               #IntLit
     | FLOAT                                             #FloatLit
     | STRING                                            #StringLit

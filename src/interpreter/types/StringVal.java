@@ -5,6 +5,21 @@ public record StringVal(String val) implements Value {
     @Override public Object getVal() { return val; }
     @Override public boolean isTrue() { return !val.isEmpty(); }
 
+    @Override
+    public Value castTo(Type target) {
+        try {
+            return switch (target) {
+                case STRING -> this;
+                case INT    -> new IntVal(Integer.parseInt(val));
+                case FLOAT  -> new FloatVal(Float.parseFloat(val));
+                case BOOL   -> new BoolVal(!val.isEmpty() && !val.equalsIgnoreCase("false"));
+                default     -> throw new RuntimeException("ERROR: " + target);
+            };
+        } catch (NumberFormatException e) {
+            throw new RuntimeException("Cannot cast STRING " + val + " to " + target);
+        }
+    }
+
     // Сложение = Конкатенация
     @Override public Value add(Value other) {
         return new StringVal(this.val + other.getVal().toString());

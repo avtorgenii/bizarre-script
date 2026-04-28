@@ -1,4 +1,4 @@
-// Generated from C:/Users/ptakw/Desktop/Kurs/bizarre-script/src/grammar/ExprParser.g4 by ANTLR 4.13.2
+// Generated from C:/Users/ashes/dev/bizarre-script/src/grammar/ExprParser.g4 by ANTLR 4.13.2
 package grammar;
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
@@ -100,18 +100,6 @@ public interface ExprParserListener extends ParseTreeListener {
 	 */
 	void exitForStat(ExprParser.ForStatContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code IncrementStat}
-	 * labeled alternative in {@link ExprParser#stat}.
-	 * @param ctx the parse tree
-	 */
-	void enterIncrementStat(ExprParser.IncrementStatContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code IncrementStat}
-	 * labeled alternative in {@link ExprParser#stat}.
-	 * @param ctx the parse tree
-	 */
-	void exitIncrementStat(ExprParser.IncrementStatContext ctx);
-	/**
 	 * Enter a parse tree produced by the {@code BlockSingle}
 	 * labeled alternative in {@link ExprParser#block}.
 	 * @param ctx the parse tree
@@ -169,6 +157,18 @@ public interface ExprParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitFunCall(ExprParser.FunCallContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code Increment}
+	 * labeled alternative in {@link ExprParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void enterIncrement(ExprParser.IncrementContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code Increment}
+	 * labeled alternative in {@link ExprParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void exitIncrement(ExprParser.IncrementContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code ListAccess}
 	 * labeled alternative in {@link ExprParser#expr}.

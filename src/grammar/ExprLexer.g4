@@ -5,6 +5,7 @@ INT_TYPE    : 'int' ;
 FLOAT_TYPE  : 'float' ;
 BOOL_TYPE   : 'bool' ;
 STRING_TYPE : 'string' ;
+LIST_TYPE   : 'list' ;
 
 // Keywords
 PROG_START : 'DOMAIN_EXPANSION' ;
@@ -51,10 +52,10 @@ RBRACK : ']';
 
 
 // Literals
-FLOAT  : [0-9]+ '.' [0-9]* | '.' [0-9]+ ;
+FLOAT  : '-'? ([0-9]+ '.' [0-9]* | '.' [0-9]+) ;
+INT    : '-'? [0-9]+ ;
 STRING : '"' .*? '"' ;
 BOOL   : 'true' | 'false' ;
-INT    : [0-9]+ ;
 
 // Etc
 ID     : [a-zA-Z_][a-zA-Z_0-9]* ; // variable or function names

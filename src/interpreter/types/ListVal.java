@@ -18,7 +18,7 @@ public record ListVal(List<Value> elements) implements Value {
 
     @Override
     public Type getType() {
-        return Type.STRING;
+        return Type.LIST;
     }
 
     @Override
@@ -29,6 +29,15 @@ public record ListVal(List<Value> elements) implements Value {
     @Override
     public boolean isTrue() {
         return !elements.isEmpty();
+    }
+
+    @Override
+    public Value castTo(Type target) {
+        return switch (target) {
+            case LIST   -> this;
+            case BOOL   -> new BoolVal(!elements.isEmpty());
+            default     -> throw new RuntimeException("Cannot cast LIST to " + target);
+        };
     }
 
     @Override

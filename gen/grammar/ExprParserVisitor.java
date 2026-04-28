@@ -1,4 +1,4 @@
-// Generated from C:/Users/ptakw/Desktop/Kurs/bizarre-script/src/grammar/ExprParser.g4 by ANTLR 4.13.2
+// Generated from C:/Users/ashes/dev/bizarre-script/src/grammar/ExprParser.g4 by ANTLR 4.13.2
 package grammar;
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
@@ -65,13 +65,6 @@ public interface ExprParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitForStat(ExprParser.ForStatContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code IncrementStat}
-	 * labeled alternative in {@link ExprParser#stat}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitIncrementStat(ExprParser.IncrementStatContext ctx);
-	/**
 	 * Visit a parse tree produced by the {@code BlockSingle}
 	 * labeled alternative in {@link ExprParser#block}.
 	 * @param ctx the parse tree
@@ -105,6 +98,13 @@ public interface ExprParserVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitFunCall(ExprParser.FunCallContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code Increment}
+	 * labeled alternative in {@link ExprParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitIncrement(ExprParser.IncrementContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code ListAccess}
 	 * labeled alternative in {@link ExprParser#expr}.

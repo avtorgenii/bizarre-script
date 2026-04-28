@@ -1,4 +1,4 @@
-// Generated from /home/avtor/dev/bizarre-script/src/grammar/ExprParser.g4 by ANTLR 4.13.2
+// Generated from C:/Users/ashes/dev/bizarre-script/grammar/ExprParser.g4 by ANTLR 4.13.2
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
 /**
@@ -64,6 +64,13 @@ public interface ExprParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitForStat(ExprParser.ForStatContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code IncrementStat}
+	 * labeled alternative in {@link ExprParser#stat}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitIncrementStat(ExprParser.IncrementStatContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code BlockSingle}
 	 * labeled alternative in {@link ExprParser#block}.
 	 * @param ctx the parse tree
@@ -98,12 +105,26 @@ public interface ExprParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitFunCall(ExprParser.FunCallContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code ListAccess}
+	 * labeled alternative in {@link ExprParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitListAccess(ExprParser.ListAccessContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code ReadCall}
 	 * labeled alternative in {@link ExprParser#expr}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitReadCall(ExprParser.ReadCallContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code ListLit}
+	 * labeled alternative in {@link ExprParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitListLit(ExprParser.ListLitContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code Assign}
 	 * labeled alternative in {@link ExprParser#expr}.
