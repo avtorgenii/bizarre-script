@@ -1,7 +1,7 @@
 # Overview
 This repo contains source code for ANTLR-based interpreter of language with anime-inspired syntax - `Bizarre Script`.
 
-It is **absolutely** recomended for files with bizarre code to have `.1000-7` extension
+It is **absolutely** recommended for files with bizarre code to have `.1000-7` extension
 
 # Run
 To run program written in `Bizarre Script`
